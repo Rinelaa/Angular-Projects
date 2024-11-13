@@ -1,0 +1,26 @@
+<div class="header">
+  <div class="user-info">
+    <h2>Welcome, {{ username }} ({{ role }})</h2>
+  </div>
+  
+
+  <div class="controls">
+    <input type="number" [(ngModel)]="gridSize" placeholder="Enter grid size" />
+    <button (click)="generateGrid()">Add Squares</button>
+  </div>
+</div>
+
+<div
+  class="grid"
+  [style.gridTemplateColumns]="'repeat(' + gridSize + ', 1fr)'"
+  [style.gridTemplateRows]="'repeat(' + gridSize + ', 1fr)'"
+>
+  <div
+    *ngFor="let cell of cells; let i = index"
+    class="cell"
+    [class.selected]="selectedCells.has(i)"
+    (click)="selectCell(i, $event)"
+  ></div>
+</div>
+
+
